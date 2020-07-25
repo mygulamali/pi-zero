@@ -1,0 +1,46 @@
+---
+- name: Enable SSH access
+  file:
+    path:  "{{ partitions.boot }}/ssh"
+    state: touch
+
+- name: Set network interfaces
+  copy:
+    src: interfaces
+    dest: "{{ partitions.os }}/etc/network/interfaces"
+    backup: yes
+    owner: root
+    group: root
+
+- name: Determine encrypted wifi password
+  shell: >
+    wpa_passphrase {{ wifi.ssid | quote }} {{ wifi.passwd | quote }} |
+    grep psk |
+    grep -v \#psk |
+    cut -d '=' -f 2
+  register: wifi_encrypted_passwd
+
+- name: Setup wifi
+  template:
+    src: templates/wpa_supplicant.conf.j2
+    dest: "{{ partitions.os }}/etc/wpa_supplicant/wpa_supplicant.conf"
+    backup: yes
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Setup SSH directory
+  file:
+    path: "{{ partitions.os }}/home/pi/.ssh"
+    state: directory
+    owner: pi
+    group: pi
+    mode: 0700
+
+- name: Copy SSH public key
+  copy:
+    src: "{{ ssh_public_key }}"
+    dest: "{{ partitions.os }}/home/pi/.ssh/authorized_keys"
+    owner: pi
+    group: pi
+    mode: 0655
