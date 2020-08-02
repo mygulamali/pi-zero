@@ -2,7 +2,6 @@
 partitions:
   boot: /path/to/boot/partition/directory
   os:  /path/to/os/partition/directory
-ssh_public_key: /path/to/ssh/public_key_file
 wifi:
   ssid: wifi_ssid
   passwd: wifi_password

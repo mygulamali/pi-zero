@@ -28,19 +28,3 @@
     owner: root
     group: root
     mode: 0600
-
-- name: Setup SSH directory
-  file:
-    path: "{{ partitions.os }}/home/pi/.ssh"
-    state: directory
-    owner: pi
-    group: pi
-    mode: 0700
-
-- name: Copy SSH public key
-  copy:
-    src: "{{ ssh_public_key }}"
-    dest: "{{ partitions.os }}/home/pi/.ssh/authorized_keys"
-    owner: pi
-    group: pi
-    mode: 0655
