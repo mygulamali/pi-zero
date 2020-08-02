@@ -22,7 +22,7 @@
 
 - name: Setup wifi
   template:
-    src: templates/wpa_supplicant.conf.j2
+    src: wpa_supplicant.conf.j2
     dest: "{{ partitions.os }}/etc/wpa_supplicant/wpa_supplicant.conf"
     backup: yes
     owner: root

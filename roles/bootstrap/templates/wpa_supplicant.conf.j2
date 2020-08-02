@@ -1,13 +1,8 @@
-country=GB
+country=gb
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
 network={
   ssid="{{ wifi.ssid }}"
-  psk="{{ wifi_encrypted_passwd.stdout }}"
-  proto=WPA2
-  key_mgmt=WPA-PSK
-  pairwise=CCMP
-  group=CCMP
-  auth_alg=OPEN
+  psk={{ wifi_encrypted_passwd.stdout }}
 }
