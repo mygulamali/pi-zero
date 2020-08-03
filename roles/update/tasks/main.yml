@@ -1,0 +1,9 @@
+---
+- name: Update package index
+  command: apt update
+
+- name: Upgrade packages
+  command: apt upgrade -y
+
+- name: Clean up
+  command: apt autoremove -y
