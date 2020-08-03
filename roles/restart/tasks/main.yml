@@ -1,0 +1,3 @@
+---
+- name: Restart host
+  command: shutdown -r +2
