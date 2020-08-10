@@ -1,0 +1,9 @@
+---
+- name: Install or update fail2ban
+  apt:
+    name: fail2ban
+    install_recommends: yes
+    state: latest
+
+- name: Setup fail2ban
+  command: cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
