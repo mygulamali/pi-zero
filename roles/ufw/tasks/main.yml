@@ -1,0 +1,26 @@
+---
+- name: Install or update UFW
+  apt:
+    name: ufw
+    install_recommends: yes
+    state: latest
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+
+- name: Allow rate-limited SSH
+  ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: Allow Mosh over UDP
+  ufw:
+    rule: allow
+    port: 60001:60999
+    proto: udp
+
+- name: Reload UFW
+  ufw:
+    state: reloaded
