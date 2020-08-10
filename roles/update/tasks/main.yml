@@ -1,9 +1,17 @@
 ---
+
 - name: Update package index
-  command: apt update
+  apt:
+    update_cache: yes
 
 - name: Upgrade packages
-  command: apt upgrade -y
+  apt:
+    upgrade: dist
 
-- name: Clean up
-  command: apt autoremove -y
+- name: Remove unrequired dependencies
+  apt:
+    autoremove: yes
+
+- name: Remove unrequired packages from cache
+  apt:
+    autoclean: yes
