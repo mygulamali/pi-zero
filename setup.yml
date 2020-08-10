@@ -1,0 +1,10 @@
+---
+- name: "Setup Raspberry Pi OS"
+  hosts: raspberrypi.local
+  become: yes
+  roles:
+    - setup
+    - ufw
+    - fail2ban
+    - update
+    - restart
