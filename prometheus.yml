@@ -1,0 +1,30 @@
+---
+- name: "Setup Prometheus"
+  hosts: all
+  become: yes
+
+  roles:
+  - update
+
+  tasks:
+  - name: Install or update Prometheus and support packages
+    apt:
+      name:
+      - prometheus
+      - prometheus-alertmanager
+      - prometheus-node-exporter
+      install_recommends: yes
+      state: latest
+
+  - name: Allow port connection
+    ufw:
+      rule: limit
+      port: '9090'
+      proto: tcp
+    notify:
+    - Reload UFW
+
+  handlers:
+  - name: Reload UFW
+    ufw:
+      state: reloaded

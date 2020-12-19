@@ -50,6 +50,27 @@ can read/write Linux (ext4) partitions, and use the `wpa_passphrase` command.
 installed, to enable Ansible to create an SSH connection to your Raspberry Pi
 Zero with a password.
 
+## Playbooks
+
+The following playbooks assume that you have created a new inventory file named
+`hosts`, similar to `default-hosts`. It should list the configuration for your
+Raspberry Pi Zero.
+
+The `<USERNAME>` parameter in the command listed below is the username of your
+user on your Raspberry Pi Zero.
+
+### Prometheus
+
+The `prometheus.yml` playbook can be used to install [Prometheus][prometheus]
+on your Raspberry Pi Zero. It can be run with,
+
+    ansible-playbook -i hosts -u <USERNAME> -K prometheus.yml
+
+After the playbook ends, the Prometheus browser will be available to view on
+`http://<HOST>:9090/graph`, where `<HOST>` is the hostname or IP address of your
+Raspberry Pi Zero.
+
 [ansible]: https://www.ansible.com/
 [pi-images]: https://www.raspberrypi.org/downloads/raspberry-pi-os/
 [pi-doc]: https://www.raspberrypi.org/documentation/installation/installing-images/README.md
+[prometheus]: https://prometheus.io/
