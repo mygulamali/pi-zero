@@ -24,7 +24,7 @@
    and fill in the variables therein.
 1. Run the bootstrap playbook:
    ```shell
-   ansible-playbook -i hosts bootstap.yml
+   ansible-playbook -i default-hosts bootstrap.yml
    ```
 
 **Note:** This `bootstrap` playbook needs to be run from a Linux OS, so that it
@@ -43,7 +43,7 @@ can read/write Linux (ext4) partitions, and use the `wpa_passphrase` command.
    and fill in the variables therein.
 1. Run the setup playbook:
    ```shell
-   ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts setup.yml
+   ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i default-hosts setup.yml
    ```
 
 **Note:** The `setup` playbook assumes that your platform has `sshpass`
