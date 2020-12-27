@@ -1,0 +1,14 @@
+---
+- name: Restart Prometheus
+  service:
+    name: prometheus
+    state: restarted
+
+- name: Restart Prometheus node-exporter
+  service:
+    name: prometheus-node-exporter
+    state: restarted
+
+- name: Reload UFW
+  ufw:
+    state: reloaded

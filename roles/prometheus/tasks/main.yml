@@ -1,0 +1,36 @@
+---
+- name: Install or update Prometheus and support packages
+  apt:
+    name:
+    - prometheus
+    - prometheus-node-exporter
+    install_recommends: yes
+    state: latest
+
+- name: Setup Prometheus
+  copy:
+    src: prometheus.yml
+    dest: /etc/prometheus/prometheus.yml
+    backup: yes
+    owner: root
+    group: root
+  notify:
+  - Restart Prometheus
+
+- name: Setup Prometheus node-exporter
+  copy:
+    src: prometheus-node-exporter
+    dest: /etc/default/prometheus-node-exporter
+    backup: yes
+    owner: root
+    group: root
+  notify:
+  - Restart Prometheus node-exporter
+
+- name: Allow port connection
+  ufw:
+    rule: limit
+    port: '9090'
+    proto: tcp
+  notify:
+  - Reload UFW
