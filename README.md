@@ -50,6 +50,13 @@ can read/write Linux (ext4) partitions, and use the `wpa_passphrase` command.
 installed, to enable Ansible to create an SSH connection to your Raspberry Pi
 Zero with a password.
 
+#### RTL8188eu Wifi Dongle
+
+I have a wifi dongle based on the RTL8188eu chipset on one of my Raspberry Pis.
+Wifi should still work with the setup described above, but the [instructions
+here](https://zsiti.eu/wifi-rtl8188eu-raspberry-pi-zero/) should be followed to
+ensure that the appropriate kernel modules are installed and loaded.
+
 ## Playbooks
 
 The following playbooks assume that you have created a new inventory file named
