@@ -4,14 +4,6 @@
     path:  "{{ partitions.boot }}/ssh"
     state: touch
 
-- name: Set network interfaces
-  copy:
-    src: interfaces
-    dest: "{{ partitions.os }}/etc/network/interfaces"
-    backup: yes
-    owner: root
-    group: root
-
 - name: Determine encrypted wifi password
   shell: >
     wpa_passphrase {{ wifi.ssid | quote }} {{ wifi.passwd | quote }} |
