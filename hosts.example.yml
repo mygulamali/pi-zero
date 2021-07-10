@@ -1,0 +1,7 @@
+all:
+  hosts:
+    <HOSTNAME>:
+      ansible_connection: ssh
+      ansible_user: <USERNAME>
+      ansible_password: <PASSWORD>
+      ansible_python_interpreter: /usr/bin/python3

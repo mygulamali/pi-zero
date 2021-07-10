@@ -24,7 +24,7 @@
    and fill in the variables therein.
 1. Run the bootstrap playbook:
    ```shell
-   ansible-playbook -i default-hosts bootstrap.yml
+   ansible-playbook -i default-hosts.yml bootstrap.yml
    ```
 
 **Note:** This `bootstrap` playbook needs to be run from a Linux OS, so that it
@@ -43,7 +43,7 @@ can read/write Linux (ext4) partitions, and use the `wpa_passphrase` command.
    and fill in the variables therein.
 1. Run the setup playbook:
    ```shell
-   ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i default-hosts setup.yml
+   ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i default-hosts.yml setup.yml
    ```
 
 **Note:** The `setup` playbook assumes that your platform has `sshpass`
@@ -59,9 +59,9 @@ ensure that the appropriate kernel modules are installed and loaded.
 
 ## Playbooks
 
-The following playbooks assume that you have created a new inventory file named
-`hosts`, similar to `default-hosts`. It should list the configuration for your
-Raspberry Pi Zero.
+The following playbooks assume that you have an inventory file named
+`hosts.yml`, similar to `hosts.example.yml`. It should describe the
+configuration for your Raspberry Pi Zero.
 
 The `<USERNAME>` parameter in the command listed below is the username of your
 user on your Raspberry Pi Zero.
@@ -71,11 +71,11 @@ user on your Raspberry Pi Zero.
 The `prometheus.yml` playbook can be used to install [Prometheus][prometheus]
 on your Raspberry Pi Zero. It can be run with,
 
-    ansible-playbook -i hosts -u <USERNAME> -K prometheus.yml
+    ansible-playbook -i hosts.yml -u <USERNAME> -K prometheus.yml
 
 After the playbook ends, the Prometheus browser will be available to view on
-`http://<HOST>:9090/graph`, where `<HOST>` is the hostname or IP address of your
-Raspberry Pi Zero.
+`http://<HOSTNAME>:9090/graph`, where `<HOSTNAME>` is the hostname or IP address
+of your Raspberry Pi Zero.
 
 [ansible]: https://www.ansible.com/
 [pi-images]: https://www.raspberrypi.org/downloads/raspberry-pi-os/
