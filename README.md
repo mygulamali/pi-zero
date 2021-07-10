@@ -15,8 +15,7 @@
    If the diff does not show any differences then you're good to proceed.
 1. Follow the [instructions][pi-doc] on the Raspberry Pi website to write the
    image to your SD card.
-1. Connect the SD card to your machine and ensure both of the partitions on it
-   (`boot` and the Linux OS partition) are mounted.
+1. Connect the SD card to your machine and ensure the `boot` partition is mounted.
 1. Copy the example variables file for the `bootstrap` playbook,
    ```shell
    cp roles/bootstrap/vars/main.example.yml roles/bootstrap/vars/main.yml
@@ -27,8 +26,8 @@
    ansible-playbook -i default-hosts.yml bootstrap.yml
    ```
 
-**Note:** This `bootstrap` playbook needs to be run from a Linux OS, so that it
-can read/write Linux (ext4) partitions, and use the `wpa_passphrase` command.
+**Note:** This `bootstrap` playbook expects the `wpa_passphrase` command to be
+present on the host machine. This comes as standard on Linux OS.
 
 ### Setup
 

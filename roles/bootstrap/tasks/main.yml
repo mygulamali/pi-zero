@@ -1,7 +1,7 @@
 ---
 - name: Enable SSH access
   file:
-    path:  "{{ partitions.boot }}/ssh"
+    path:  "{{ boot_partition }}/ssh"
     state: touch
 
 - name: Determine encrypted wifi password
@@ -15,8 +15,5 @@
 - name: Setup wifi
   template:
     src: wpa_supplicant.conf.j2
-    dest: "{{ partitions.os }}/etc/wpa_supplicant/wpa_supplicant.conf"
+    dest: "{{ boot_partition }}/wpa_supplicant.conf"
     backup: yes
-    owner: root
-    group: root
-    mode: 0600

@@ -1,7 +1,5 @@
 ---
-partitions:
-  boot: /path/to/boot/partition/directory
-  os:  /path/to/os/partition/directory
+boot_partition: /path/to/boot/partition/directory
 wifi:
-  ssid: wifi_ssid
-  passwd: wifi_password
+  ssid: wifi ssid
+  passwd: wifi password
