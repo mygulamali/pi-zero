@@ -43,7 +43,3 @@
     regex: "^exit 0$"
     insertbefore: "^exit 0"
     line: "/usr/bin/tvservice -o"
-
-- name: Change hostname
-  hostname:
-    name: "{{ hostname }}"
