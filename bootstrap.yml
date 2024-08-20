@@ -1,6 +1,0 @@
----
-- name: "Bootstrap Raspberry Pi OS SD card"
-  hosts: localhost
-  become: yes
-  roles:
-    - bootstrap
