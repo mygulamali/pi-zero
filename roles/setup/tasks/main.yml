@@ -20,15 +20,6 @@
       - wheel
       - pexpect
 
-- name: Change password
-  expect:
-    command: passwd pi
-    responses:
-      Current password: raspberry
-      New password: "{{ pi.password }}"
-      Retype new password: "{{ pi.password }}"
-  no_log: true
-
 - name: Add new user
   expect:
     command: adduser {{ user.name }}
