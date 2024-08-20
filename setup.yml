@@ -1,6 +1,5 @@
 ---
 - name: "Setup Raspberry Pi OS"
-  hosts: raspberrypi.local
   become: yes
   roles:
     - setup

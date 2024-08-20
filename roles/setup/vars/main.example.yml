@@ -1,9 +1,0 @@
----
-hostname: raspberrypi
-pi:
-  password: raspberry
-ssh_public_key: /home/user/.ssh/id_rsa.pub
-user:
-  full_name: Pi
-  name: pi
-  password: raspberry

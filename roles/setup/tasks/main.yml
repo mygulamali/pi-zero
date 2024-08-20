@@ -22,18 +22,18 @@
 
 - name: Setup SSH directory
   file:
-    path: /home/{{ user.name }}/.ssh
+    path: /home/{{ ansible_user }}/.ssh
     state: directory
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0700
 
 - name: Allow SSH public key
   copy:
     src: "{{ ssh_public_key }}"
-    dest: /home/{{ user.name }}/.ssh/authorized_keys
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    dest: /home/{{ ansible_user }}/.ssh/authorized_keys
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0655
 
 - name: Disable HDMI on boot
