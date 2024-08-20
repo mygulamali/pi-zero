@@ -20,25 +20,6 @@
       - wheel
       - pexpect
 
-- name: Add new user
-  expect:
-    command: adduser {{ user.name }}
-    responses:
-      New password: "{{ user.password }}"
-      Retype new password: "{{ user.password }}"
-      Name: "{{ user.full_name }}"
-      Number: ""
-      Phone: ""
-      Other: ""
-      Y/n: Y
-  no_log: true
-
-- name: Give new user sudo powers
-  command: >
-    usermod -a
-    -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi
-    {{ user.name }}
-
 - name: Setup SSH directory
   file:
     path: /home/{{ user.name }}/.ssh
