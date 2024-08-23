@@ -11,57 +11,23 @@
     openssh-server
     python3
     python3-apt
+    python3-pexpect
     python3-pip
-
-- name: Install required Python modules
-  pip:
-    name:
-      - setuptools
-      - wheel
-      - pexpect
-
-- name: Change password
-  expect:
-    command: passwd pi
-    responses:
-      Current password: raspberry
-      New password: "{{ pi.password }}"
-      Retype new password: "{{ pi.password }}"
-  no_log: true
-
-- name: Add new user
-  expect:
-    command: adduser {{ user.name }}
-    responses:
-      New password: "{{ user.password }}"
-      Retype new password: "{{ user.password }}"
-      Name: "{{ user.full_name }}"
-      Number: ""
-      Phone: ""
-      Other: ""
-      Y/n: Y
-  no_log: true
-
-- name: Give new user sudo powers
-  command: >
-    usermod -a
-    -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi
-    {{ user.name }}
 
 - name: Setup SSH directory
   file:
-    path: /home/{{ user.name }}/.ssh
+    path: /home/{{ ansible_user }}/.ssh
     state: directory
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0700
 
 - name: Allow SSH public key
   copy:
     src: "{{ ssh_public_key }}"
-    dest: /home/{{ user.name }}/.ssh/authorized_keys
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    dest: /home/{{ ansible_user }}/.ssh/authorized_keys
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0655
 
 - name: Disable HDMI on boot
@@ -71,7 +37,3 @@
     regex: "^exit 0$"
     insertbefore: "^exit 0"
     line: "/usr/bin/tvservice -o"
-
-- name: Change hostname
-  hostname:
-    name: "{{ hostname }}"

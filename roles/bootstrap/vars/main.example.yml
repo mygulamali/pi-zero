@@ -1,5 +1,0 @@
----
-boot_partition: /path/to/boot/partition/directory
-wifi:
-  ssid: wifi ssid
-  passwd: wifi password

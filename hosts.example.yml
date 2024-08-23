@@ -5,3 +5,4 @@ all:
       ansible_user: <USERNAME>
       ansible_password: <PASSWORD>
       ansible_python_interpreter: /usr/bin/python3
+      ssh_public_key: <PATH_TO_PUBLIC_SSH_KEY>
