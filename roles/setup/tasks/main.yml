@@ -30,10 +30,16 @@
     group: "{{ ansible_user }}"
     mode: 0655
 
-- name: Disable HDMI on boot
+- name: Disable HDMI via firmware config
   lineinfile:
-    path: /etc/rc.local
-    backup: yes
-    regex: "^exit 0$"
-    insertbefore: "^exit 0"
-    line: "/usr/bin/tvservice -o"
+    path: /boot/firmware/config.txt
+    regexp: "^hdmi_blanking="
+    line: "hdmi_blanking=1"
+    state: present
+
+- name: Disable HDMI port detection
+  lineinfile:
+    path: /boot/firmware/config.txt
+    regexp: "^hdmi_ignore_hotplug="
+    line: "hdmi_ignore_hotplug=1"
+    state: present
